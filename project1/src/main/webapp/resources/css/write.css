@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.frame{
+	width: 800px;
+	height: 800px;
+	margin : 0 auto;
+	padding: 10px;
+	background-color: gray;
+	
+	
+}
+.frame input{
+	width : 100%;
+	margin: 0;
+	padding : 0;	
+	height:  50px;
+	
+}
+
+.btn2{
+	margin:0; padding:0;
+	width: 100%;
+	height: 30px;
+	
+	
+}

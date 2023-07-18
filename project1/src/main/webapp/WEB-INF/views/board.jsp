@@ -33,6 +33,6 @@
 		
 		
 		</table>
-	
+	<button onclick="location.href='./write'">글쓰기</button>
 </body>
 </html>

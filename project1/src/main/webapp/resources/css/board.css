@@ -22,5 +22,5 @@ td{
 	width: 20%;
 }
 tr:hover {
-	background-color: gray;
+ background : linear-gradient(to bottom, yellow, red);
 }

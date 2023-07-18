@@ -20,8 +20,11 @@ public class BoardDAO {
 	}
 
 	public BoardDTO detail(String bno) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("board.detail", bno); //앞에는 네임스페이스.아이디 , 값
+	}
+
+	public void write(BoardDTO dto) {
+		sqlSession.insert("board.write", dto);//네임스페이스.id , 값	
 	}
 	
 }
