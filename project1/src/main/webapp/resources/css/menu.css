@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body{
+margin: 0;
+padding: 0;
+}
+nav{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: skyblue;
+	height: 50px;
+}
+nav ul{
+	margin: 0;
+	padding: 0;
+	
+}
+nav li{
+	list-style: none; /* li앞에 원을 없애줍니다*/
+	float: left;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+nav li:hover {
+	background-color: purple;
+	color : white;
+	
+}
+.mmain{
+	width: 50px;
+	height: 50px;
+	
+}
+.bboard{
+	width: 100px;
+	height: 50px;
+}
+.mmain:hover {
+
+}

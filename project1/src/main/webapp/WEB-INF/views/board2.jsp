@@ -8,6 +8,6 @@
 </head>
 <body>
 <%@include file="menu.jsp" %>
-	<h1>인덱스</h1>
+	<h1>보드2</h1>
 </body>
 </html>

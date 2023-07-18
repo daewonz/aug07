@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.tab{
+	width: 800px;
+	height: 900px;
+	background-color: beige;
+	margin: 70px;
+	
+}
+
+.title{
+	height: 10%;
+	text-align: center;
+}
+.writer{
+	height: 5%;
+	text-align: center;	
+}
+.writer1{
+	text-align: left;
+}
+.center{
+	
+	text-align: left;
+}
+.content{
+
+	
+}
+.date{
+	width: 20%
+	
+}
+.dw{
+	width: 400px;
+	height: 50%;
+	
+}

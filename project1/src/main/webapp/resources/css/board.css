@@ -21,3 +21,6 @@ td{
 .td2{
 	width: 20%;
 }
+tr:hover {
+	background-color: gray;
+}

@@ -34,6 +34,7 @@ public class BoardController {
 		model.addAttribute("dto", dto);
 		return "detail";
 	}
+	//rd는 서블릿에서만 사용합니다.
 	
 	
 }

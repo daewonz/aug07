@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="./css/board.css">
 </head>
 <body>
+<%@include file="menu.jsp" %>
 	<h1>보드</h1>
-	<a href="./index">index로 가기</a>
 	<img alt="zz" src="./img/maza.png">
 		<table>
 		<tr>

@@ -10,7 +10,8 @@
 		LIMIT 10
 	</select>
 	
-	<!-- #{변수명}을 적어주면 변수가 들어가요 -->
+	<!-- #{변수명}을 적어주면 변수가 들어가요
+		 스트링 타입으로 들어오는 변수명은 bno -->
 	<select id="detail" parameterType="String" resultType="boardDTO">
 	SELECT * FROM board WHERE bno=#{bno}
 	
