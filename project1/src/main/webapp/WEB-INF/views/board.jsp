@@ -11,6 +11,7 @@
 <%@include file="menu.jsp" %>
 	<h1>보드</h1>
 	<img alt="zz" src="./img/maza.png">
+	
 		<table>
 		<tr>
 			<th>번호</th>

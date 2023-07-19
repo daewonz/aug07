@@ -2,12 +2,18 @@ package com.ddww.pro1;
 
 public class BoardDTO {
 	private int bno, blike;
-	private String btitle, bcontent, bwrite, bdate;
+	private String btitle, bcontent, bwrite, bdate, bip;
 	public int getBno() {
 		return bno;
 	}
 	public void setBno(int bno) {
 		this.bno = bno;
+	}
+	public String getBip() {
+		return bip;
+	}
+	public void setBip(String bip) {
+		this.bip = bip;
 	}
 	public int getBlike() {
 		return blike;
