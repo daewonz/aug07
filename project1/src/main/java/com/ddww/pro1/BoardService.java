@@ -27,7 +27,7 @@ public class BoardService {
 		return boardDAO.boardList();
 	}
 
-	public BoardDTO deatil(String bno) {
+	public BoardDTO deatil(int bno) {
 		BoardDTO dto = boardDAO.detail(bno);
 		if(dto.getBip() != null && dto.getBip().indexOf(".") != -1) {
 				
@@ -57,6 +57,11 @@ public class BoardService {
 	public void delete(BoardDTO dto) {
 		boardDAO.delete(dto);
 		
+	}
+
+	public void edit(BoardDTO dto) {
+
+		boardDAO.edit(dto);
 	}
 
 }

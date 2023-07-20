@@ -8,6 +8,7 @@
 				<li onclick="link('board2')"><img class="goon" src="./img/goon.png" alt="게시판2"></li>
 				<li onclick="link('mooni')"><img class="happy" src="./img/happy.png" alt="문의사항"></li>
 				<li onclick="link('notice')">공지</li>
+				<li onclick="link('login')"><img class="happy" src="./img/login.png" alt="로그인"></li>
 			</ul>
 		</nav>
 		<div style="height: 50px; width: 100%;"></div>

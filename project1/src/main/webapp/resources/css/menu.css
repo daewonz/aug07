@@ -27,7 +27,6 @@ nav li{
 nav li:hover {
 	background-color: purple;
 	color : white;
-	
 }
 .mmain{
 	width: 50px;
@@ -40,6 +39,7 @@ nav li:hover {
 }
 .mmain:hover {
 
+	
 }
 .happy{
 	height: 50px;
@@ -48,4 +48,8 @@ nav li:hover {
 .goon{
 	height: 50px;
 	width: 70px;
+}
+.goon:hover{
+	background-color: white;
+	background-image: url("/src/main/webapp/resources/img/goon2.png");
 }
