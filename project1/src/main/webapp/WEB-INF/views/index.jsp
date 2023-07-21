@@ -11,5 +11,10 @@
 <body>
 <%@include file="menu.jsp" %>
 	<h1>인덱스</h1>
+	<%=request.getHeader("User-Agent") %>
+	<form action="./index" method="post">
+	<input type="text" name="mass" id="id" placeholder="소통해요">
+	<button type="submit">보내기</button>
+	</form>
 </body>
 </html>

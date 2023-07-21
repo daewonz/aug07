@@ -11,9 +11,10 @@
 	<h1>로그인</h1>
 	<form action="./login" method="post">
 	
-	<input type="text" name="id" placeholder="아이디를 입력하세요"><br>
-	<input type="password" name="pw" placeholder="패스워드를 입력하세요"><br>
+	<input type="text" name="id" id="id" placeholder="아이디를 입력하세요"><br>
+	<input type="password" name="pw" id="pw" placeholder="패스워드를 입력하세요"><br>
 	<button type="submit">로그인하기</button>
+	
 	</form>
 </body>
 </html>

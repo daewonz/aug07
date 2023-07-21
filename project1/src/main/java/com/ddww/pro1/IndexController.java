@@ -1,11 +1,17 @@
 package com.ddww.pro1;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IndexController {
 //첫화면 로딩 : index.jsp 호출
+	@Autowired
+	Util util;
 	@GetMapping(value = {"/","index"})
 	public String index() {
 		
@@ -28,5 +34,10 @@ public class IndexController {
 		return "notice";
 	}
 	
-	
+	@PostMapping("/index")
+	public String index(HttpServletRequest request) {
+		System.out.println(util.getIp()+" : " + request.getParameter("mass"));
+		
+		return "index";
+	}
 }

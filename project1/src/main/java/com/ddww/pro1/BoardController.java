@@ -43,7 +43,7 @@ public class BoardController {
 		BoardDTO dto = boardService.deatil(bno);
 		model.addAttribute("dto", dto);
 		System.out.println(util.getIp() + "가 " + bno + "에 들어왔습니다."); // 아이피 추적하기
-		return "detail";
+		return "detail"; 
 	}
 	// rd는 서블릿에서만 사용합니다.
 
@@ -108,17 +108,5 @@ public class BoardController {
 		return "redirect:detail?bno="+dto.getBno();	//수정을 완료한 후에 컨트롤러를 거쳐 보드로 이동하게 해주세요.
 	}
 
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
-
-	@PostMapping("login")
-	public String login(HttpServletRequest request) {
-		System.out.println("아이디 : "+request.getParameter("id"));
-		System.out.println("패스워드 : "+ request.getParameter("pw"));
-		return "redirect:index";
-	}
-	
 	
 }
