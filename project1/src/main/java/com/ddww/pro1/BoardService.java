@@ -22,13 +22,12 @@ public class BoardService {
 	private Util util;
 	
 	//보드 리스트 불러오는 메소드
-	public List<Map<String, Object>> boardList(){
-		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+	public List<BoardDTO> boardList(){
 		return boardDAO.boardList();
 	}
-
-	public BoardDTO deatil(int bno) {
-		BoardDTO dto = boardDAO.detail(bno);
+	
+	public BoardDTO deatil(BoardDTO dto2) {
+		BoardDTO dto = boardDAO.detail(dto2);
 		if(dto.getBip() != null && dto.getBip().indexOf(".") != -1) {
 				
 		String sip[] = dto.getBip().split("\\.");

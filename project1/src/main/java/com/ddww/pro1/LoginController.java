@@ -56,11 +56,12 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		if(session.getAttribute("mname") != null) {
 		session.removeAttribute("mname");//세선 삭제하기
+		
+			
 		}
 		if(session.getAttribute("mid") != null) {
 			session.removeAttribute("mid");
 		}
-		
 		
 		session.setMaxInactiveInterval(0); //세션 유지시간을 0으로 = 종료시키기
 		session.invalidate();//세션 초기화 = 종료 = 세션의 모든 속성 값을 제거

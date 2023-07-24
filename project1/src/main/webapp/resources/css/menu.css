@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .login{
-	width : auto;
+	width : 100% auto;
 	text-align: right;
 	
 }
@@ -24,6 +24,7 @@ nav{
 	height: 50px;
 }
 nav ul{
+	width : 100%;
 	margin: 0;
 	padding: 0;
 	
@@ -31,7 +32,7 @@ nav ul{
 nav li{
 	list-style: none; /* li앞에 원을 없애줍니다*/
 	float: left;
-	width: 100px;
+	width: 15%;
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
@@ -52,6 +53,11 @@ nav li:hover {
 .mmain:hover {
 
 	
+}
+.mooni{
+	height: 50px;
+	width: 70px;
+	text-align: right;
 }
 .happy{
 	height: 50px;

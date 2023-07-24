@@ -24,3 +24,7 @@ td{
 tr:hover {
  background : linear-gradient(to bottom, yellow, red);
 }
+.nodata{
+	text-align: center;
+}
+
