@@ -95,16 +95,26 @@ public class BoardController {
 
 	// 삭제가 들어온다면 http://localhost/delete?bno=147
 	@GetMapping("/delete")
-	public String delete(@RequestParam(value = "bno", required = false, defaultValue = "0") int bno) { // HttpServletRequest의
+	public String delete(@RequestParam(value = "bno", required = false, defaultValue = "0") int bno, HttpSession session) { // HttpServletRequest의
 																										// getParameter를
 																										// 뜻합니다.
+		
+		//로그인 여부 확인해주세요.
+		System.out.println(session.getAttribute("mid"));
+		
 		System.out.println("bno : " + bno + "를 " + util.getIp() + "가 삭제했습니다.");
 		// dto
 		BoardDTO dto = new BoardDTO();
 		dto.setBno(bno);
+		dto.setM_id((String)session.getAttribute("mid"));
 		// dto.setBwrite(null) 사용자 정보
 		// 추후 로그인을 하면 사용자의 정보도 담아서 보냅니다.
-		boardService.delete(dto);
+		
+		if(session.getAttribute("mid")==dto.getM_id()) {
+			
+			boardService.delete(dto);//임시로 막앗습니다.
+		}
+		
 		return "redirect:board";// 삭제를 완료한 후에 컨트롤러를 지나 다시 보드로 갑니다.
 	}
 
@@ -114,22 +124,39 @@ public class BoardController {
 		
 		HttpSession session = request.getSession();
 		
-		ModelAndView mv = new ModelAndView("edit"); //edit.jsp
-		
-		
-		//dto를 하나 만들어서 거기에 담겠습니다. = bno, dto
-		BoardDTO dto = new BoardDTO();
-		dto.setBno(util.strToInt(request.getParameter("bno")));
-		//내글만 수정할 수 있도록 세션에 있는 mid도 보냅니다.
-		dto.setM_id((String)session.getAttribute("mid"));
-		
-		//데이터베이스에 물어봐서 bno를 보내서 dto를 얻어옵니다.
-		BoardDTO result = boardService.deatil(dto);
-		
-		
-		mv.addObject("dto", result);
-		//mv에 실어보냅니다.
+		//로그인 하지 않으면 로그인 화면으로 던져주세요
+		ModelAndView mv = new ModelAndView(); //jsp 값을 비웁니다.
+		if(session.getAttribute("mid") != null) {
+
+			
+			
+			//dto를 하나 만들어서 거기에 담겠습니다. = bno, dto
+			BoardDTO dto = new BoardDTO();
+			dto.setBno(util.strToInt(request.getParameter("bno")));
+			//내글만 수정할 수 있도록 세션에 있는 mid도 보냅니다.
+			dto.setM_id((String)session.getAttribute("mid"));
+			
+			//데이터베이스에 물어봐서 bno를 보내서 dto를 얻어옵니다.
+			BoardDTO result = boardService.deatil(dto);
+			
+			if(result != null) {
+				mv.addObject("dto", result);//mv에 실어보냅니다.
+				mv.setViewName("edit");//이동할 jsp명을 적어줍니다.
+				
+			}else {//다른 사람 글이라면 null입니다. 경고창으로 이동합니다.
+				mv.setViewName("warning");
+				
+			}
+			
+
+		}
+		else {
+				//로그인 안 했다. = login 컨트롤러
+				mv.setViewName("redirect:/login");
+		}
 		return mv;
+			
+		
 	}
 	
 	@PostMapping("/edit")
@@ -140,7 +167,6 @@ public class BoardController {
 		System.out.println(dto.getBno());
 		
 		boardService.edit(dto);
-		
 		
 		return "redirect:detail?bno="+dto.getBno();	//수정을 완료한 후에 컨트롤러를 거쳐 보드로 이동하게 해주세요.
 	}

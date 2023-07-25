@@ -27,17 +27,29 @@ public class BoardService {
 	}
 	
 	public BoardDTO deatil(BoardDTO dto2) {
+		//좋아요 수 +1하기 기능을 넣어주겠습니다.
+		boardDAO.likeUp(dto2);  //bno 값을 가져오기 위해 dto2를 넣어주었습니다.
+		
+		
+		
 		BoardDTO dto = boardDAO.detail(dto2);
-		if(dto.getBip() != null && dto.getBip().indexOf(".") != -1) {
+		//System.out.println(dto);
+		//System.out.println(dto.getBno());
+		//System.out.println(dto.getBip());
+		if(dto != null) {//내 글이 아닐 때는 null이 들어옵니다. 즉 null 이 아닐때라고 검사해주세요.
+			
+			if(dto.getBip() != null && dto.getBip().indexOf(".") != -1) {
 				
-		String sip[] = dto.getBip().split("\\.");
-		String sip2 = sip[1].substring(0, sip[1].length()-1);
-		sip2 = sip2.replace(sip2, "♡");
-		sip[1] = sip2;
-		sip2 = String.join(".", sip);
-		dto.setBip(sip2);
+				String sip[] = dto.getBip().split("\\.");
+				String sip2 = sip[1].substring(0, sip[1].length()-1);
+				sip2 = sip2.replace(sip2, "♡");
+				sip[1] = sip2;
+				sip2 = String.join(".", sip);
+				dto.setBip(sip2);
+			}
 		}
 		return dto;
+		
 	}
 
 	public void write(BoardDTO dto) {

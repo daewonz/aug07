@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기 Get</title>
+<script type="text/javascript">
+function check(){
+	let title = document.getElementById("title")
+	let content = document.getElementById("summernote")
+	
+	if(title.value.length < 5 ){
+		alert("제목은 5글자 이상이여야 합니다.");
+		return false;
+	}
+	if(content.value.length < 15){
+		alert("내용은 5글자 이상이여야 합니다.")
+		return false;
+	}
+}
+
+</script>
+
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -20,8 +37,8 @@
 <link rel="stylesheet" href="./css/write.css">
 	<h1>글쓰기</h1>
 	<div class="frame">
-		<form action="./write" method="post">
-		<input type="text" name = "title">
+		<form action="./write" method="post" onsubmit="return check()">
+		<input type="text" id="title" name = "title">
 		  <textarea id="summernote" name="content"></textarea>
 		<button class="btn2" type="submit">글쓰기</button>
 		<!-- type="submit" =>제출버튼, 폼데이터로 데이터 전송 -->
