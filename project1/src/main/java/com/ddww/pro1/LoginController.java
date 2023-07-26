@@ -33,7 +33,7 @@ public class LoginController {
 		//생각해주세요. id/pw를 보냈을 때 무엇이 왔으면 좋을까요?
 		//이름 + COUNT(*)
 		dto = loginService.login(dto);
-		System.out.println("아이피 : "+util.getIp()+" : "+dto.getM_name());
+//		System.out.println("아이피 : "+util.getIp()+" : "+dto.getM_name());
 		System.out.println(dto.getCount());
 		if(dto.getCount()==1) {
 			//세션을 만들어서 로그인을 지정 시간동안 유지시킵니다.

@@ -22,8 +22,8 @@ public class BoardService {
 	private Util util;
 	
 	//보드 리스트 불러오는 메소드
-	public List<BoardDTO> boardList(){
-		return boardDAO.boardList();
+	public List<BoardDTO> boardList(PageDTO page){
+		return boardDAO.boardList(page);
 	}
 	
 	public BoardDTO deatil(BoardDTO dto2) {
@@ -73,6 +73,11 @@ public class BoardService {
 	public void edit(BoardDTO dto) {
 
 		boardDAO.edit(dto);
+	}
+
+	public int totalCount() {
+		return boardDAO.totalCount();
+		
 	}
 
 }

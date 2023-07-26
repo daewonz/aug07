@@ -12,7 +12,7 @@ alert(a);
 
 
 
-var a = 100;
+let a = 100;
 	let text = "<p>올바른 아이디를 입력하세요</p>";//전역변수
 	//호이스팅이 뭐에요?
 	//let vs var ?

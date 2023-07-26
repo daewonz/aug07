@@ -1,5 +1,6 @@
 package com.ddww.pro1;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 @Controller
 public class BoardController {
 	// user -> Controller -> Service -> DAO -> mybatis -> DB
@@ -25,10 +28,40 @@ public class BoardController {
 	@Autowired
 	private Util util;//우리가 만든 숫자변환을 사용하기 위해서 객체 연결했어요.
 
+	
+	
+	//localhost/board?pageNo=10
 	@GetMapping("/board")
-	public String board(Model model) {
+	public String board(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo, Model model) {
 		// 서비스에서 값 가져오기
-		model.addAttribute("list", boardService.boardList());
+		//페이지네이션인포 - > 값 넣고 - > DB - > jsp
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(pageNo); //현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10);//한 페이지에 게시되는 게시글 수
+		paginationInfo.setPageSize(10);//페이징 리스트의 사이즈
+		//전체 글 수 가져오는 명령문장
+		int totalCount = boardService.totalCount();
+		paginationInfo.setTotalRecordCount(totalCount);//전체 게시글 수
+		
+		int firstRecordIndex = paginationInfo.getFirstRecordIndex();//		시작위치
+		int recordCountPerPage = paginationInfo.getRecordCountPerPage();//	페이지당 글 몇개(36번쨰 줄로 인해 10)
+		
+		//System.out.println(firstRecordIndex);
+		//System.out.println(recordCountPerPage);
+		//System.out.println(pageNo);
+		//System.out.println(totalCount);
+		
+		PageDTO page = new PageDTO();
+		page.setFirstRecordIndex(firstRecordIndex);
+		page.setRecordCountPerPage(recordCountPerPage);
+		
+		//보드서비스 수정합니다.
+		List<BoardDTO> list = boardService.boardList(page);
+		
+		
+		model.addAttribute("list", list);
+		//페이징 관련 정보가 있는 PaginationInfo 객체를 모델에 반드시 넣어준다.
+		model.addAttribute("paginationInfo", paginationInfo);
 		return "board";
 	}
 

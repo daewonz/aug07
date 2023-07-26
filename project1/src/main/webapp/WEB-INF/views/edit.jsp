@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>글 수정</title>
+<script type="text/javascript">
+function check(){
+	let title = document.getElementById("title")
+	let content = document.getElementById("summernote")
+	
+	if(title.value.length < 5 ){
+		alert("제목은 5글자 이상이여야 합니다.");
+		return false;
+	}
+	if(content.value.length < 15){
+		alert("내용은 5글자 이상이여야 합니다.")
+		return false;
+	}
+}
+
+</script>
+
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -21,8 +38,8 @@
 	<h1>글쓰기</h1>
 	${dto.bno }	/ ${dto.btitle } / ${dto.bcontent } / ${dto.bdate }
 	<div class="frame">
-		<form action="./edit" method="post">
-		<input type="text" name = "btitle" value="${dto.btitle }">
+		<form action="./edit" method="post" onsubmit="return check()">
+		<input type="text" id="title" name = "btitle" value="${dto.btitle }">
 		  <textarea id="summernote" name="bcontent">${dto.bcontent }</textarea>
 		<button class="btn2" type="submit">글쓰기</button>
 		<input type="hidden" name="bno" value="${dto.bno }">
