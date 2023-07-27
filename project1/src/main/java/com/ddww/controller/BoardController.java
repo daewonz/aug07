@@ -1,7 +1,8 @@
-package com.ddww.pro1;
+package com.ddww.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ddww.dto.BoardDTO;
+import com.ddww.dto.PageDTO;
+import com.ddww.service.BoardService;
+import com.ddww.util.Util;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -116,7 +122,13 @@ public class BoardController {
 			dto.setM_id((String)session.getAttribute("mid"));// 이건 임시로 넣었습니다. 로그인 추가되면 변경하겠습니다.
 			dto.setM_name((String)session.getAttribute("mname"));//세션에서 가져옴.
 			// Service -> DAO -> mybatis -> DB로 보내서 저장하기
+			
+			dto.setUuid(UUID.randomUUID().toString());
+			System.out.println(UUID.randomUUID().toString());
+			System.out.println(UUID.randomUUID().toString().length());
+			
 			boardService.write(dto);
+			System.out.println(dto.getUuid());
 		}else {
 			//로그인 안했어요. = 로그인 하세요
 			return "redirect:/login";

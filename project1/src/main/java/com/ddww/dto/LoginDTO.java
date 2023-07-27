@@ -1,4 +1,4 @@
-package com.ddww.pro1;
+package com.ddww.dto;
 
 public class LoginDTO {
 	private int m_no, m_grade, count;//count=로그인 시 1,0 이 들어옵니다.

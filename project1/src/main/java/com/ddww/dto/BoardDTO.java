@@ -1,8 +1,16 @@
-package com.ddww.pro1;
+package com.ddww.dto;
 
 public class BoardDTO {
 	private int bno, blike;
-	private String btitle, m_id, bcontent, m_name, bdate, bip;
+	private String btitle, m_id, bcontent, m_name, bdate, bip,uuid;
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 
 	public String getM_id() {
 		return m_id;

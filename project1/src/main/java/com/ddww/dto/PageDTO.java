@@ -1,4 +1,4 @@
-package com.ddww.pro1;
+package com.ddww.dto;
 //롬복이라는 도구가 있어요
 public class PageDTO {
 	private int firstRecordIndex,recordCountPerPage;

@@ -1,4 +1,4 @@
-	package com.ddww.pro1;
+	package com.ddww.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -8,6 +8,9 @@ import javax.inject.Named;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.ddww.dto.BoardDTO;
+import com.ddww.dto.PageDTO;
 
 @Repository("boardDAO")
 public class BoardDAO {

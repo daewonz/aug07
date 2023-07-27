@@ -57,5 +57,8 @@ function check(){
 	<button type="submit" class="login">로그인하기</button>
 	<span id="msg"></span>
 	</form>
+	<a>아이디 찾기 | </a>
+	<a>비밀번호 찾기 | </a>
+	<a href="./join">회원가입</a>
 </body>
 </html>

@@ -1,15 +1,21 @@
-package com.ddww.pro1;
+package com.ddww.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.ddww.dao.BoardDAO;
+import com.ddww.dto.BoardDTO;
+import com.ddww.dto.PageDTO;
+import com.ddww.util.Util;
 
 @Service("boardService")
 public class BoardService {
@@ -60,6 +66,7 @@ public class BoardService {
 		//값을 변경하겠습니다. replace() <-> &lt; 랑 &gt;로 바꿔줍니다.
 		dto.setBip(util.getIp()); //얻어온 ip도 저장해서 데이터베이스로 보내겠습니다.
 		
+	
 		//다시 저장해줍니다.
 		boardDAO.write(dto);//실행만 시키고 결과를 받지 않습니다.
 		//select를 제외한 나머지는 영향받은 행의 수(int)를 받아오기도 합니다.

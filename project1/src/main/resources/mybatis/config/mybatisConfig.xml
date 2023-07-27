@@ -4,9 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.ddww.pro1.BoardDTO" alias="boardDTO"/>
-		<typeAlias type="com.ddww.pro1.LoginDTO" alias="loginDTO"/>
-		<typeAlias type="com.ddww.pro1.PageDTO" alias="pageDTO"/>
+		<typeAlias type="com.ddww.dto.BoardDTO" alias="boardDTO"/>
+		<typeAlias type="com.ddww.dto.LoginDTO" alias="loginDTO"/>
+		<typeAlias type="com.ddww.dto.PageDTO" alias="pageDTO"/>
 		
 	</typeAliases>
 </configuration>

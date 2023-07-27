@@ -22,7 +22,6 @@
 	<%@include file="menu.jsp"%>
 	<h1>보드</h1>
 	<img alt="zz" src="./img/maza.png"> 길이 검사 : ${fn:length(list) }
-	${paginationInfo }
 	<c:choose>
 		<c:when test="${fn:length(list) gt 0}">
 			<table>
