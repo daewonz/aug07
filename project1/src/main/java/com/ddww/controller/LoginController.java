@@ -1,5 +1,8 @@
 package com.ddww.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.ddww.dto.JoinDTO;
 import com.ddww.dto.LoginDTO;
 import com.ddww.service.LoginService;
 import com.ddww.util.Util;
@@ -17,6 +23,8 @@ import com.ddww.util.Util;
 
 public class LoginController {
 
+
+	
 	@Autowired
 	private LoginService loginService;
 	@Autowired
@@ -78,7 +86,27 @@ public class LoginController {
 		
 		return "join";
 	}
+	@PostMapping("/join")
+	public String join(JoinDTO joinDTO) {
+		System.out.println("jsp에서 받아오는 값 : " + joinDTO.getGender());
+		System.out.println("jsp에서 받아오는 값 : " + joinDTO.getBirth());
+		System.out.println("jsp에서 받아오는 값 : " + joinDTO.getPw1());
+		
+		int result = loginService.join(joinDTO);
+		
+		if(result == 1) {
+			return"redirect:/login";
+		}else {
+			return "redirect:/join";
+		}
+	}
 	
-	
+	@GetMapping("/members")
+	public ModelAndView members() {
+		ModelAndView mv = new ModelAndView("members"); //members.jsp로 보냅니다.
+		List<JoinDTO> list = loginService.members();
+		mv.addObject("list", list);
+		return mv;
+	}
 	
 }
