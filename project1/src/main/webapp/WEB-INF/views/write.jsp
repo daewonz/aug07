@@ -36,11 +36,12 @@ function check(){
 <%@include file="menu.jsp" %>
 <link rel="stylesheet" href="./css/write.css">
 	<h1>글쓰기</h1>
+	<button class="btn btn-outline-primary">버튼</button>
 	<div class="frame">
 		<form action="./write" method="post" onsubmit="return check()">
 		<input type="text" id="title" name = "title">
 		  <textarea id="summernote" name="content"></textarea>
-		<button class="btn2" type="submit">글쓰기</button>
+		<button class="btn100 btn-primary" type="submit">글쓰기</button>
 		<!-- type="submit" =>제출버튼, 폼데이터로 데이터 전송 -->
 		</form>
 	

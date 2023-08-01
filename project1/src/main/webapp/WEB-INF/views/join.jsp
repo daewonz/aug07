@@ -5,12 +5,46 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+
 <div align="center">
 <h1 >★★회원가입★★</h1>
 </div>
 
 
+<script src="./js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#idCheck").click(function(){
+		let id = $("#id").val();
+		if(id == "" || id.length < 5){
+			//alert("아이디를 좀 길게 만들어 보세요;");
+			$("#resultMSG").text("아이디를 좀 길게 만들어 보세요;");
+			$("#resultMSG").css("color","red");
+			$("#id").focus();
+			return false;
+		}else{
+			$.ajax({
+				url:"./checkID",
+				type:"post",
+				data:{"id":id},	//checkID?id=poseidon
+				dataType: "html",
+				success:function(data){
+					$("#resultMSG").text("data : " + data);
+				},
+				error:function(request, status, error){
+					$("#resultMSG").text("error : " + error);
+				}
+			});
+			$("#resultMSG").text("오 길게 썼네요ㅋㅋ");
+			$("#resultMSG").css("color","green");
+		}
+		return false;
+	});
+	
+});
 
+
+</script>
 </head>
 <br>
 <br>
@@ -19,7 +53,12 @@
 	<div>아이디</div>
 	<div>
 		<input type="text" name="id" id="id" placeholder="아이디를 입력해주세요">
+		<button id="idCheck">중복검사</button>
+		<br>
+		<span id="resultMSG"></span>
+		<br>
 	</div>
+
 	<div>비밀번호</div>
 	<div>
 		<input type="password" name="pw1" id="pw1" placeholder="비밀번호를 입력해주세요">
