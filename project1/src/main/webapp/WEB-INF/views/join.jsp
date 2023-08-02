@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>회원가입</title>
 
 <div align="center">
 <h1 >★★회원가입★★</h1>
@@ -16,31 +16,44 @@
 $(function(){
 	$("#idCheck").click(function(){
 		let id = $("#id").val();
-		if(id == "" || id.length < 5){
-			//alert("아이디를 좀 길게 만들어 보세요;");
-			$("#resultMSG").text("아이디를 좀 길게 만들어 보세요;");
-			$("#resultMSG").css("color","red");
-			$("#id").focus();
-			return false;
+		//console.log(id);
+		//console.log(id.length);
+		if(id=="" || id.length < 5){
+			$("#resultMSG").text("아이디는 다섯글자 이상이어야 합니다.");
+			$("#resultMSG").css("color","red").css("font-weight","bold").css("font-size","15pt");
 		}else{
-			$.ajax({
-				url:"./checkID",
-				type:"post",
-				data:{"id":id},	//checkID?id=poseidon
-				dataType: "html",
-				success:function(data){
-					$("#resultMSG").text("data : " + data);
+			$.ajax({//ajax 시작
+				url: "./checkID",
+				type: "post",
+				data: {"id" : id},
+				dataType: "json",	//{result:0}	//서버가 보내주는게 json형태로 옵니다.
+				success: function(data){
+					alert(data.result);
+					if(data.result==1){//1은 등록되어있는 아이디. 즉 COUNT(*) 에서 값이 나온 아이디.
+						$("#id").css("background-color","yellow").focus();
+						$("#resultMSG").css("color","red").text("이미 등록된 아이디입니다.");
+						
+					}else {
+						$("#id").css("background-color","green");
+						$("#resultMSG").css("color","green");
+						$("#resultMSG").text("가입할 수 있습니다.");
+						
+					}
+					
+					//	$("#resultMSG").text("성공시 결과값 : "+ data);
+					
 				},
-				error:function(request, status, error){
-					$("#resultMSG").text("error : " + error);
+				error : function(request, status, error){
+					$("#resultMSG").text("오류가 발생했습니다. 가입할 수 없습니다.")
 				}
-			});
-			$("#resultMSG").text("오 길게 썼네요ㅋㅋ");
-			$("#resultMSG").css("color","green");
+			});//ajax 끝
+			
 		}
+		
+		
+		
 		return false;
 	});
-	
 });
 
 
