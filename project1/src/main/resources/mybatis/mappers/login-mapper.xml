@@ -38,11 +38,13 @@ INSERT INTO members (m_id, m_pw, m_name, m_addr, m_birth, m_mbti, m_gender)
 VALUES(#{id }, #{pw1 }, #{name}, #{addr }, #{birth }, #{mbti },#{gender } )
 
 </insert>
-<select id="boardList2" resultType="Map">
-SELECT * FROM boardview LIMIT 0, 10	
+<select id="boardList2" parameterType="Integer" resultType="Map">
+	SELECT * FROM boardview LIMIT #{i }, 10	
 
 </select>
-
+<select id="totalCount" resultType="Integer">
+	SELECT COUNT(*) from boardview
+</select>
 
 
 </mapper>

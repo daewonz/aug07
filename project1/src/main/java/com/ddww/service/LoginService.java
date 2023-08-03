@@ -1,5 +1,6 @@
 package com.ddww.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,12 @@ public class LoginService {
 		return loginDAO.checkID(id);
 	}
 
-	public List<Map<String, Object>> boardList2() {
-		return loginDAO.boardlist2();
+	public List<Map<String, Object>> boardList2(int i) {
+		return loginDAO.boardlist2(i);
+	}
+
+	public int totalCount() {
+		return loginDAO.totalCount();
 	}
 
 }
