@@ -1,7 +1,7 @@
 package com.ddww.dto;
 
 public class BoardDTO {
-	private int bno, blike;
+	private int bno, blike, commentcount;
 	private String btitle, m_id, bcontent, m_name, bdate, bip,uuid;
 
 	public String getUuid() {
@@ -74,6 +74,14 @@ public class BoardDTO {
 
 	public void setBip(String bip) {
 		this.bip = bip;
+	}
+
+	public int getCommentcount() {
+		return commentcount;
+	}
+
+	public void setCommentcount(int commentcount) {
+		this.commentcount = commentcount;
 	}
 
 }

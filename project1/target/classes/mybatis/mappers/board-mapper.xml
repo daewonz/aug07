@@ -23,6 +23,13 @@
 	AND m_id=#{m_id}
 	</if>
 	</select>
+	<select id="commentList" parameterType="Integer" resultType="Map">
+	SELECT *
+	FROM commentsview
+	WHERE bno=#{bno}
+	
+	</select>
+	
 
 <!-- insert는 result가 없습니다. -->
 <!-- 서브쿼리 : 쿼리 속에 쿼리가 들어가요. -->
@@ -31,9 +38,10 @@
 	VALUES (#{btitle },#{bcontent },(SELECT m_no FROM members WHERE m_id=#{m_id}), #{bip }, #{uuid })
 	</insert>
 	
-	<delete id="delete" parameterType="boardDTO">
-	DELETE FROM board WHERE bno=#{bno} AND m_no= (SELECT m_no FROM members WHERE m_id=#{m_id})
-	</delete>
+	<update id="delete" parameterType="boardDTO">
+	UPDATE board SET bdel = 0 
+	WHERE bno=#{bno} AND m_no= (SELECT m_no FROM members WHERE m_id=#{m_id})
+	</update>
 	
 	<update id="edit" parameterType="boardDTO">
 	UPDATE board SET btitle=#{btitle}, bcontent=#{bcontent} WHERE bno=#{bno}

@@ -87,4 +87,9 @@ public class BoardService {
 		
 	}
 
+	public List<Map<String, Object>> commentList(int bno) {
+	
+		return boardDAO.commentList(bno);
+	}
+
 }

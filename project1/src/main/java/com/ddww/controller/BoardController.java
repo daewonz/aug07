@@ -1,5 +1,6 @@
 package com.ddww.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -87,6 +88,12 @@ public class BoardController {
 		//dto.setM_id(null) 글 상세보기에서는 mid가 없어도 됩니다.
 		
 		BoardDTO result = boardService.deatil(dto);
+		System.out.println(result.getCommentcount());
+		if(result.getCommentcount() > 0) {
+			//데이터베이스에 물어봐서 jsp로 보냅니다.
+			List<Map<String, Object>> comments = boardService.commentList(bno);
+			model.addAttribute("commentList", comments );
+		}
 		model.addAttribute("dto", result);
 		System.out.println(util.getIp() + "가 " + bno + "에 들어왔습니다."); // 아이피 추적하기
 		return "detail"; 

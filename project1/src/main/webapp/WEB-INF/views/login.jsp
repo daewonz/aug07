@@ -35,15 +35,15 @@ function check(){
 	
 	//alert(id.value);
 	//alert(id.value.length);
-	if(id.value.length < 4){
-		alert("아이디는 4글자 이상이여야 합니다.");
+	if(id.value.length < 0){
+		alert("아이디는0글자 이상이여야 합니다.");
 		msg.innerHTML = text;
 		
 		id.focus();
 		return false;
 	}
-	if(pw.value.length < 3){
-		alert("암호는 3글자 이상이여야 합니다.");
+	if(pw.value.length < 0){
+		alert("암호는 0글자 이상이여야 합니다.");
 		pw.focus();
 		return false;
 	}
@@ -54,11 +54,11 @@ $(function(){
 	   $(".login").click(function(){
 	   let id = $("#id").val();
 	   let pw = $("#pw").val();
-	   if(id.length < 5){
+	   if(id.length < 0){
 	   alert("아이디를 입력하세요.");
 	   $("#id").focus();
 	   }else{
-	      if (pw.length < 5) {
+	      if (pw.length < 0) {
 	   alert("암호를 입력하세요.")
 	    $("#pw").focus();
 	}else{
