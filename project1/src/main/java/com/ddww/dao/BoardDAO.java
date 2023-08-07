@@ -51,5 +51,10 @@ public class BoardDAO {
 	public List<Map<String, Object>> commentList(int bno) {
 		return sqlSession.selectList("board.commentList",bno);
 	}
+
+	public int cdel(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("board.cdel", map);
+	}
 	
 }

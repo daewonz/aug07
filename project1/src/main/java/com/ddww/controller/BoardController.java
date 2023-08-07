@@ -223,5 +223,23 @@ public class BoardController {
 		return "redirect:detail?bno="+dto.getBno();	//수정을 완료한 후에 컨트롤러를 거쳐 보드로 이동하게 해주세요.
 	}
 
+	//2023-08-07 입추, 프레임워크 프로그래밍
+	@GetMapping("/cdel")//필수값으로 bno와 cno가 들어와야 합니다.
+	public String cdel(@RequestParam Map<String, Object> map, HttpSession session) {
+		//로그인여부 검사
+		if(session.getAttribute("mid") != null) {
+			//값 들어왔는지 검사
+			if(map.containsKey("bno") && map.get("cno") != null && 
+					!(map.get("bno").equals("")) && !(map.get("cno").equals("")) &&
+					util.isNum(map.get("bno")) && util.isNum(map.get("cno"))) {
+				System.out.println("여기로 들어왔습니다.");
+				map.put("mid", session.getAttribute("mid"));
+				int result = boardService.cdel(map);
+				System.out.println("삭제 결과 : " + result );
+			}
+		
+		}
+		return "redirect:/detail?bno="+map.get("bno");
+	}
 	
 }

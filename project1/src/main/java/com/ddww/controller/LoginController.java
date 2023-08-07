@@ -111,7 +111,11 @@ public class LoginController {
 		mv.addObject("list", list);
 		return mv;
 	}
-	
+	//자바스크립트로 만든것.
+		@GetMapping("/join2")
+		public String join2() {
+			return "join2";
+		}
 
 	
 	

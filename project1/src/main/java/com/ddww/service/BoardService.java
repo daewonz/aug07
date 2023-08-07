@@ -92,4 +92,9 @@ public class BoardService {
 		return boardDAO.commentList(bno);
 	}
 
+	public int cdel(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return boardDAO.cdel(map);
+	}
+
 }

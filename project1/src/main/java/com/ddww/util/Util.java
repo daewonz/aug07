@@ -100,4 +100,18 @@ public class Util {
 
 		return ip;
 	}
+	
+	//숫자인지 확인하기
+	public boolean isNum(Object obj) {
+		try {
+			Integer.parseInt(String.valueOf(obj));
+			return true;
+			
+		} catch (Exception e) {
+			
+			return false;
+		}
+	}
+	
+	
 }

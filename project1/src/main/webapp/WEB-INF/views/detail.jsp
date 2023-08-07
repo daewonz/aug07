@@ -11,28 +11,71 @@
 <script src="./js/jquery-3.7.0.min.js"></script>
 <script type="text/javascript">
 function edit(){
-	if(confirm("수정하시겠습니까?")){
-		location.href="./edit?bno=${dto.bno }";
-	}
-		
+   if(confirm("수정하시겠습니까?")){
+      location.href="./edit?bno=${dto.bno }";
+   }
+      
 }
 
-	function del(){
-		let chk = confirm("삭제하시겠습니까?") //참 거짓으로 나옵니다.
-		//alert(chk);
-		if(chk){
-			location.href="./delete?bno=${dto.bno}";
-			
-		}
-	}
-	$(function(){
-		$(".commentBox").hide();
-		$("#openComment").click(function(){
-			$(".commentBox").show('slow');
-			$("#openComment").remove();
-		});
-		
-	});
+   function del(){
+      let chk = confirm("삭제하시겠습니까?") //참 거짓으로 나옵니다.
+      //alert(chk);
+      if(chk){
+         location.href="./delete?bno=${dto.bno}";
+         
+      }
+   }
+
+      
+      //댓글 삭제 버튼 만들기 = 반드시 로그인 하고, 자신의 글인지 확인하는 검사 구문 필요
+      function cdel(cno){
+         if(confirm("댓글을 삭제하시겠습니까?")){
+            location.href = "./cdel?bno=${dto.bno}&cno="+cno;
+         }
+      }
+   $(function(){
+      $(".commentBox").hide();
+      $("#openComment").click(function(){
+         $(".commentBox").show('slow');
+         $("#openComment").remove();
+      });
+      //댓글 삭제 다른 방법
+   $(".cdel").click(function(){
+      if(confirm("댓글을 삭제하시겠습니까?")){
+      let cno = $(this).parent().siblings(".cid").text();
+      
+      let cno_comments = $(this).parents(".comments"); //변수처리
+      //location.href="./cdel?bno=${dto.bno}&cno="+cno;
+      
+      
+      $.ajax({
+    	url : "./cdelR",
+      	type : "post",
+    	data : {bno : ${dto.bno}, cno : cno},
+    	dataType : "json",
+    	  success : function(data){
+    		  //alert(data);    		
+    		  if(data.result==1){
+    			  //alert("통신이 되었습니다 결과값 : "+ data.result);
+    			  //$(this).parent().parent().parent().remove();
+    			  cno_comments.remove(); //변수에 담긴 html 삭제
+    		  }else{
+    			  alert("통신에 문제가 발생했습니다. 다시 시도해주세요.");
+    		  }
+    	  },
+    	  error : function(error){
+    		  alert("에러가 발생했습니다" + error);
+    	  }
+      });
+      
+      }
+   });
+   
+   
+   });
+   
+      //댓글 수정 버튼 만들기 = 반드시 로그인 하고, 자신의 글인지 확인하는 검사 구문 필요.
+   
 </script>
 </head>
 <body>
@@ -41,71 +84,76 @@ function edit(){
 <div class="center">
 <table class="tab" border="2">
 <tr class="writer">
-	<th >작성자</th>
-	<th class="writer1">${dto.m_name } 님</th>
-	<th class="date">날짜</th>
-	<th>${dto.bdate }</th>
-	<th class="ip">아이피</th>
-	<th>${dto.bip }</th>
+   <th >작성자</th>
+   <th class="writer1">${dto.m_name } 님</th>
+   <th class="date">날짜</th>
+   <th>${dto.bdate }</th>
+   <th class="ip">아이피</th>
+   <th>${dto.bip }</th>
 </tr>
 <tr class="title">
-	<th>제목</th>
-	<th colspan="5">${dto.btitle }</th>
+   <th>제목</th>
+   <th colspan="5">${dto.btitle }</th>
 </tr>
 
 <tr class="content" >
-		
-		<td colspan="6">${dto.bcontent }<img class="dw" alt="zzzz" src="./img/noterror.png"></td>
+      
+      <td colspan="6">${dto.bcontent }<img class="dw" alt="zzzz" src="./img/noterror.png"></td>
 </tr>
 <tr class="edde">
-	<c:if test="${sessionScope.mid ne null && sessionScope.mid eq dto.m_id }">
-		<td colspan="3" class="edde1"><img src="./img/edit.png" alt="edit" onclick="edit()"> </td>
-	</c:if>
-	<c:if test="${sessionScope.mid ne null && sessionScope.mid eq dto.m_id }">
-		<td colspan="3" class="edde2"><img src="./img/delete.png" alt="delete" onclick="del()"></td>
-	</c:if>
+   <c:if test="${sessionScope.mid ne null && sessionScope.mid eq dto.m_id }">
+      <td colspan="3" class="edde1"><img src="./img/edit.png" alt="edit" onclick="edit()"> </td>
+   </c:if>
+   <c:if test="${sessionScope.mid ne null && sessionScope.mid eq dto.m_id }">
+      <td colspan="3" class="edde2"><img src="./img/delete.png" alt="delete" onclick="del()"></td>
+   </c:if>
 </tr>
-<div class="commentsList">
 <tr>
-<c:choose>
-	<c:when test="${fn:length(commentList) gt 0}"><tr><td colspan="6">댓글이 있어요@@@@@@@@@@</td></tr>
-	<div class="comments">
-		<c:forEach items="${commentList }" var="c">
-		<tr>
-		 <div class="cid"><td>아디 : ${c.m_id }</td></div>
-		 <div class="cname"><td>닉 : ${c.m_name }</td></div>
-		 <div class="ccomment"><td>${c.c_comment }</td></div>
-		 <div class="cdate"><td>${c.c_date }</td></div>
-		</tr>
-		</c:forEach>
-	</div>
-	</c:when>
-	<c:otherwise><h2>댓글이 없어요</h2></c:otherwise>
-</c:choose>
-
-</tr>
-</div>	
-<c:if test="${sessionScope.mid ne null }">
-<tr>
-<td>
-<button type="button" id="openComment">댓글창 열기</button>
-</td>
-</tr>
-		<tr>
-		<td colspan="6">
-		<div class="commentBox">
-			<form action="./comment" method="post">
-			<textarea id="commenttextarea" name="comment"></textarea>
-			<button type="submit" id="comment">글쓰기</button>
-			<input type="hidden" name="bno" value="${dto.bno }">
-			</form>
-		</div>
-		</td>
-		</tr>
-</c:if>
 </table>
 
+
+<div class="commentsList">
+<c:choose>
+   <c:when test="${fn:length(commentList) gt 0}"><tr><td colspan="6">댓글이 있어요@@@@@@@@@@</td></tr>
+   <div class="comments">
+      <c:forEach items="${commentList }" var="c">
+      <div class="com">
+       <div class="cidd">아디 : ${c.m_id }
+          <c:if test="${sessionScope.mid ne null && sessionScope.mid eq c.m_id }">
+          <img src="./img/delete.png" alt="cdelete" class="cdel" onclick="cdel1(${c.c_no })">
+          <img src="./img/edit.png" alt="cedit" onclick="cedit()">
+          </c:if>
+       </div>
+       <div class="cid">${c.c_no }</div>
+       </div>
+       <div class="cname">닉 : ${c.m_name }</div>
+       <div class="ccomment">${c.c_comment }</div>
+       <div class="cdate">${c.c_date }</div>
+      </c:forEach>
+   </div>
+
+   </c:when>
+   <c:otherwise><h2>댓글이 없어요</h2></c:otherwise>
+</c:choose>
+
+</div>   
+<c:if test="${sessionScope.mid ne null }">
+<td>
+<button type="button" id="openComment">댓글창 열기</button>
+
+      
+      <div class="commentBox">
+         <form action="./comment" method="post">
+         <textarea id="commenttextarea" name="comment"></textarea>
+         <button type="submit" id="comment">글쓰기</button>
+         <input type="hidden" name="bno" value="${dto.bno }">
+         </form>
+      </div>
+
+</c:if>
+
+
 </div>
-		
+      
 </body>
 </html>
