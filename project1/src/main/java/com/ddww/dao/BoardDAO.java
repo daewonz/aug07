@@ -56,5 +56,10 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("board.cdel", map);
 	}
+
+	public int cedit(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("board.cedit", map);
+	}
 	
 }

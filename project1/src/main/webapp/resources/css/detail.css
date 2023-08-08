@@ -49,10 +49,10 @@
 .commentsList{
 	width: 500px;
 }
-.commentBox{
+.commentBox, .recommentBox{
 	width: 800px;
 }
-#commenttextarea{
+#commenttextarea, #rcta{
 	width: 500px;
 	
 }

@@ -57,4 +57,10 @@
 	AND m_no=(SELECT m_no from members WHERE m_id=#{mid})
 	
 	</update>
+	<update id="cedit" parameterType="Map">
+	UPDATE comments SET c_comment=#{recomment}
+	WHERE bno=#{bno} AND c_no=#{cno}
+	AND m_no=(SELECT m_no from members WHERE m_id=#{mid})
+	
+	</update>
 </mapper>

@@ -97,4 +97,8 @@ public class BoardService {
 		return boardDAO.cdel(map);
 	}
 
+	public int cdeit(Map<String, Object> map) {
+		return boardDAO.cedit(map);
+	}
+
 }
